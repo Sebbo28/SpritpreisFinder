@@ -36,7 +36,7 @@ def get_fuel_prices(url):
         return None
 
 # Liste der Regionen
-regions = ['76135', '75196']
+regions = ['76135+Karlsruhe%2FBeiertheim', '76829+Landau+in+der+Pfalz', '67433+Neustadt+an+der+Weinstraße&spritsorte']
 
 # URL-Format für die Spritpreis-Webseite
 url_format = f"https://www.clever-tanken.de/tankstelle_liste?lat=&lon=&ort={{region}}&spritsorte=5&r=5"
