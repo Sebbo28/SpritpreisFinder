@@ -74,15 +74,15 @@ with open(csv_file, 'a', newline='',encoding='utf-8-sig') as file:
         url = url_format.format(region=region)
 
         # Abrufen der Spritpreise und Tankstellennamen für die aktuelle Region
-        prices, names , streets, plzs = get_fuel_prices(url)
+        prices, names , streets, plz_city = get_fuel_prices(url)
 
-        if prices and names and streets and plzs:
+        if prices and names and streets and plz_city:
             if not csv_exists:
                 # Schreiben der Spaltenüberschrift in die CSV-Datei (nur einmal, wenn die Datei neu erstellt wird)
-                writer.writerow(["Datum", "Uhrzeit","Region","Strasse","Ort_PLZ", "Tankstelle", "Preis"])
+                writer.writerow(["Datum","Uhrzeit","Region","Strasse","Ort_PLZ","Tankstelle","Preis"])
                 csv_exists = True
 
-            for i, (price, name,street,plz) in enumerate(zip(prices, names,streets,plzs)):
+            for i, (price, name,street,plz) in enumerate(zip(prices, names, streets, plz_city)):
                 # Schreiben der Daten in die CSV-Datei
                 writer.writerow([current_datetime, current_date, region,street,plz, name, price])
 
