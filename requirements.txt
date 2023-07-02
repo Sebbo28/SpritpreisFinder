@@ -1,0 +1,6 @@
+requests
+BeautifulSoup
+csv
+date
+datetime
+os
