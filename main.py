@@ -79,7 +79,7 @@ with open(csv_file, 'a', newline='',encoding='utf-8-sig') as file:
         if prices and names and streets and plz_city:
             if not csv_exists:
                 # Schreiben der Spaltenüberschrift in die CSV-Datei (nur einmal, wenn die Datei neu erstellt wird)
-                writer.writerow(["Datum","Uhrzeit","Region","Strasse","Ort_PLZ","Tankstelle","Preis"])
+                writer.writerow(["Uhrzeit","Datum","Region","Strasse","Ort_PLZ","Tankstelle","Preis"])
                 csv_exists = True
 
             for i, (price, name,street,plz) in enumerate(zip(prices, names, streets, plz_city)):
