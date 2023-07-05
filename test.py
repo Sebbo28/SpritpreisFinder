@@ -57,30 +57,32 @@ url_format = f"https://www.clever-tanken.de/tankstelle_liste?lat=&lon=&ort={{reg
 current_date = date.today().strftime("%Y-%m-%d")
 current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 current_month = date.today().strftime("%Y-%m")
+print(current_month)
 # Name der CSV-Datei mit Datum
 csv_file = f"spritpreise_{current_month}.csv"
+print (csv_file)
 
 csv_exists = os.path.isfile(csv_file)
 
 # CSV-Datei öffnen und als Schreibmodus speichern
-with open(csv_file, 'a', newline='',encoding='utf-8-sig') as file:
-    writer = csv.writer(file)
-    # Schreiben der Spaltenüberschrift in die CSV-Datei (nur einmal für jede Region)
-    for region in regions:
-        # URL für die aktuelle Region erstellen
-        url = url_format.format(region=region)
-
-        # Abrufen der Spritpreise und Tankstellennamen für die aktuelle Region
-        prices, names , streets, plz_city = get_fuel_prices(url)
-
-        if prices and names and streets and plz_city:
-            if not csv_exists:
-                # Schreiben der Spaltenüberschrift in die CSV-Datei (nur einmal, wenn die Datei neu erstellt wird)
-                writer.writerow(["Uhrzeit","Datum","Region","Strasse","Ort_PLZ","Tankstelle","Preis"])
-                csv_exists = True
-
-            for i, (price, name,street,plz) in enumerate(zip(prices, names, streets, plz_city)):
-                # Schreiben der Daten in die CSV-Datei
-                writer.writerow([current_datetime, current_date, region,street,plz, name, price])
-
-    print(f"Die Spritpreise wurden erfolgreich in die CSV-Datei '{csv_file}' gespeichert.")
+# with open(csv_file, 'a', newline='',encoding='utf-8-sig') as file:
+#     writer = csv.writer(file)
+#     # Schreiben der Spaltenüberschrift in die CSV-Datei (nur einmal für jede Region)
+#     for region in regions:
+#         # URL für die aktuelle Region erstellen
+#         url = url_format.format(region=region)
+#
+#         # Abrufen der Spritpreise und Tankstellennamen für die aktuelle Region
+#         prices, names , streets, plz_city = get_fuel_prices(url)
+#
+#         if prices and names and streets and plz_city:
+#             if not csv_exists:
+#                 # Schreiben der Spaltenüberschrift in die CSV-Datei (nur einmal, wenn die Datei neu erstellt wird)
+#                 writer.writerow(["Uhrzeit","Datum","Region","Strasse","Ort_PLZ","Tankstelle","Preis"])
+#                 csv_exists = True
+#
+#             for i, (price, name,street,plz) in enumerate(zip(prices, names, streets, plz_city)):
+#                 # Schreiben der Daten in die CSV-Datei
+#                 writer.writerow([current_datetime, current_date, region,street,plz, name, price])
+#
+#     print(f"Die Spritpreise wurden erfolgreich in die CSV-Datei '{csv_file}' gespeichert.")
