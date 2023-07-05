@@ -58,7 +58,7 @@ current_date = date.today().strftime("%Y-%m-%d")
 current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 current_month = date.today().strftime("%Y-%m")
 # Name der CSV-Datei mit Datum
-csv_file = f"spritpreise_{current_month}.csv"
+csv_file = f"data/raw/spritpreise_{current_month}.csv"
 
 csv_exists = os.path.isfile(csv_file)
 
